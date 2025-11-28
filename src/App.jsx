@@ -79,10 +79,17 @@ const App = () => {
         let pool = config.mode === 'lines' ? allQuestions.filter(q => q.type === 'line')
             : config.mode === 'spaces' ? allQuestions.filter(q => q.type === 'space')
             : [...allQuestions];
-        const generated = [];
-        for (let i = 0; i < config.count; i++) {
-            generated.push(pool[Math.floor(Math.random() * pool.length)]);
+        
+        // Fisher-Yates shuffle per randomizzazione senza ripetizioni
+        const shuffled = [...pool];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
+        
+        // Prendi solo le prime N domande richieste
+        const generated = shuffled.slice(0, Math.min(config.count, shuffled.length));
+        
         setQuizQuestions(generated);
         setCurrentQuestionIndex(0);
         setShowAnswer(false);
@@ -102,7 +109,7 @@ const App = () => {
 
     const Footer = () => (
         <div className="mt-8 pb-6">
-            <img src="/Logo sip orizzontale nero.png" alt="Sognandoilpiano" className="h-8 mx-auto opacity-60 hover:opacity-90 transition-opacity" />
+            <img src="/Logo sip orizzontale nero.png" alt="Sognandoilpiano" className="h-16 mx-auto opacity-60 hover:opacity-90 transition-opacity" />
         </div>
     );
 
@@ -111,11 +118,8 @@ const App = () => {
             <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-br from-cyan-50 via-blue-50 to-purple-50 font-sans">
                 <div className="bg-white max-w-lg w-full rounded-2xl shadow-xl overflow-hidden p-8">
                     <div className="text-center mb-8">
-                        <div className="bg-gradient-to-br from-cyan-100 to-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Music className="w-8 h-8 text-cyan-600" />
-                        </div>
-                        <h1 className="text-3xl font-bold text-gray-800">Configura Esercizio</h1>
-                        <p className="text-gray-500 mt-2">Personalizza il tuo allenamento di lettura</p>
+                        <h1 className="text-4xl font-bold text-gray-800">Allenamento di lettura</h1>
+                        <p className="text-gray-600 mt-1 font-medium">Chiave di violino e chiave di basso</p>
                     </div>
                     <div className="space-y-6">
                         <div>
@@ -131,8 +135,8 @@ const App = () => {
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-3">Cosa vuoi allenare?</label>
-                            <div className="grid grid-cols-3 gap-3">
-                                {[{v:'lines',l:'Solo Righe'},{v:'spaces',l:'Solo Spazi'},{v:'random',l:'Misto'}].map(({v,l})=>(
+                            <div className="grid grid-cols-2 gap-3">
+                                {[{v:'lines',l:'Solo Righe'},{v:'spaces',l:'Solo Spazi'}].map(({v,l})=>(
                                     <button key={v} onClick={()=>setConfig({...config,mode:v})}
                                         className={`p-3 rounded-lg border-2 text-sm font-medium transition-all ${config.mode===v?'border-cyan-500 bg-gradient-to-br from-cyan-50 to-blue-50 text-cyan-700':'border-gray-200 hover:border-cyan-200 text-gray-600'}`}>
                                         {l}
