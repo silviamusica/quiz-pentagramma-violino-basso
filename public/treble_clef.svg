@@ -1,0 +1,17 @@
+<svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Treble Clef / Chiave di Violino -->
+  <g fill="#374151" stroke="none">
+    <!-- Main spiral -->
+    <path d="M 50 20 Q 60 30 60 45 Q 60 55 50 60 Q 40 65 35 55 Q 32 48 35 40 Q 38 32 45 30 Q 52 28 55 35" fill="#374151"/>
+    
+    <!-- Upper loop -->
+    <path d="M 50 60 Q 45 70 40 80 Q 35 90 40 100 Q 50 110 60 105 Q 65 102 65 95 Q 65 85 55 85 Q 48 85 48 92" fill="#374151"/>
+    
+    <!-- Lower spiral -->
+    <path d="M 50 105 Q 40 115 35 130 Q 30 145 40 160 Q 55 175 70 165 Q 75 160 72 150 Q 68 140 60 140 Q 50 140 50 150" fill="#374151"/>
+    
+    <!-- Decorative dots -->
+    <circle cx="25" cy="80" r="3" fill="#374151"/>
+    <circle cx="25" cy="110" r="3" fill="#374151"/>
+  </g>
+</svg>

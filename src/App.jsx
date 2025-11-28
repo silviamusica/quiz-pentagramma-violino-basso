@@ -33,7 +33,7 @@ const StaffVisualizer = ({ notePos, showNote, clef }) => {
             <svg width="300" height="200" viewBox="0 0 300 200" className="bg-white rounded-lg shadow-inner border border-gray-200 select-none">
                 {clef === 'treble' ? (
                     // Use PNG for treble clef (some systems render SVG/Unicode poorly)
-                    <image href="/treble_clef.png" x="10" y="35" width="60" height="130" />
+                    <image href="/violin key.png" x="10" y="45" width="60" height="130" />
                 ) : (
                     <image href="/bass_clef.svg" x="10" y="60" width="50" height="60" />
                 )}
