@@ -135,8 +135,8 @@ const App = () => {
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-3">Cosa vuoi allenare?</label>
-                            <div className="grid grid-cols-2 gap-3">
-                                {[{v:'lines',l:'Solo Righe'},{v:'spaces',l:'Solo Spazi'}].map(({v,l})=>(
+                            <div className="grid grid-cols-3 gap-3">
+                                {[{v:'lines',l:'Solo Righe'},{v:'spaces',l:'Solo Spazi'},{v:'random',l:'Miste'}].map(({v,l})=>(
                                     <button key={v} onClick={()=>setConfig({...config,mode:v})}
                                         className={`p-3 rounded-lg border-2 text-sm font-medium transition-all ${config.mode===v?'border-cyan-500 bg-gradient-to-br from-cyan-50 to-blue-50 text-cyan-700':'border-gray-200 hover:border-cyan-200 text-gray-600'}`}>
                                         {l}
